@@ -5,9 +5,8 @@ public class RecursionExamples {
         System.out.println(factorialRecursive(5));
         System.out.println(factorialIteration(5));
 
-
-        System.out.println(grateCommonDivisor(20, 16));
-        System.out.println(grateCommonDivisor1(20, 16));
+        System.out.println(greatestCommonDivisorRecursive(20, 16));
+        System.out.println(greatestCommonDivisorIteration(20, 16));
     }
 
     public static long factorialRecursive(long n) {
@@ -24,15 +23,15 @@ public class RecursionExamples {
         return output;
     }
 
-    public static int grateCommonDivisor(int a, int b) {
+    public static int greatestCommonDivisorRecursive(int a, int b) {
         if (b == 0) {
             return a;
         } else {
-            return grateCommonDivisor(b, a % b);
+            return greatestCommonDivisorRecursive(b, a % b);
         }
     }
 
-    public static int grateCommonDivisor1(int a, int b) {
+    public static int greatestCommonDivisorIteration(int a, int b) {
         int output;
         while (b != 0) {
             output = b;
