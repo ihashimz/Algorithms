@@ -6,19 +6,19 @@ public class SelectionSort {
 
     public static List<Person> sort(List<Person> input) {
 
-        List<Person> personList = new ArrayList<>(input);
+        List<Person> output = new ArrayList<>(input);
 
-        int k;
-        for (int i = 0; i < personList.size(); i++) {
-            k = i;
-            for (int j = i + 1; j < personList.size(); j++) {
-                if (personList.get(j).getAge() < personList.get(k).getAge()) {
-                    k = j;
-                }
-            }
-            Collections.swap(personList, k, i);
+        for(int i = 0; i < output.size(); i++){
+            int currentMinIndex = findMinIndex(i,output);
+            Collections.swap(output,i,currentMinIndex);
         }
-        return personList;
+        return output;
     }
+
+    private static int findMinIndex(int from,List<Person> inputList) {
+        List<Person> sublist = new ArrayList<>(inputList.subList(from,inputList.size()));
+        return inputList.indexOf(Collections.min(sublist));
+    }
+
 
 }
