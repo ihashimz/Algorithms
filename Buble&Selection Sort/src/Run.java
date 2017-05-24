@@ -27,7 +27,6 @@ public class Run {
 
         personList = SelectionSort.sort(personList);
 
-
         System.out.println("Sort age -> name -> surname \n");
 
         for (Person person : personList) {

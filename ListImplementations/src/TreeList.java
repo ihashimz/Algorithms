@@ -1,8 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class MyTreeListImplementation {
-
+public class TreeList {
     private Node head = null;
 
     public void add() {

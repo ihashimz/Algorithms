@@ -1,5 +1,4 @@
-public class MyLinkedListImplementation {
-
+public class LinkedList {
     private Node firstNode = null;
     private Node lastNode = null;
 
@@ -53,4 +52,7 @@ public class MyLinkedListImplementation {
             return next;
         }
     }
+
+
+
 }
