@@ -13,17 +13,16 @@ public class PeselSet {
         return temp;
     }
 
-    public int test(){
+    public int size(){
         return peselSet.size();
     }
 
     public boolean addPesel(String pesel){
         Pesel temp = new Pesel(pesel);
         if(checkIfCorrect(temp)){
-            peselSet.add(temp);
-            return true;
+            return peselSet.add(temp);
         }
-        return false;
+        throw new RuntimeException("WRONG");
     }
 
     private boolean checkIfCorrect(Pesel pesel) {

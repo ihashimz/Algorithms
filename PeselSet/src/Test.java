@@ -6,14 +6,15 @@ public class Test {
 
         PeselSet ps= new PeselSet();
 
-        ps.addPesel("96030804730");
-        ps.addPesel("96030804730");//DUPLICATE
+        try {
+            System.out.println(ps.addPesel("96030804730"));
+            System.out.println(ps.addPesel("96030804730"));//DUPLICATE
+            System.out.println(ps.addPesel("96030304730"));//WRONG
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        ps.addPesel("44051401358");//WRONG
-
-        System.out.println(ps.test());
-
-        System.out.println(ps.getPeselNumbers().size());
+        System.out.println(ps.size());
 
         printPeselNumbers(ps.getPeselNumbers());
     }
