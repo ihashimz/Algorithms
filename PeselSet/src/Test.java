@@ -7,15 +7,15 @@ public class Test {
         PeselSet ps= new PeselSet();
 
         ps.addPesel("96030804730");
-        ps.addPesel("96030804730");
+        ps.addPesel("96030804730");//DUPLICATE
 
-        ps.addPesel("44051401358");
-        ps.addPesel("96032134730");//wrong
+        ps.addPesel("44051401358");//WRONG
+
+        System.out.println(ps.test());
 
         System.out.println(ps.getPeselNumbers().size());
 
         printPeselNumbers(ps.getPeselNumbers());
-
     }
 
     public static void printPeselNumbers(Set<String> peselNumbers){

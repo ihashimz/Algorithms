@@ -3,14 +3,18 @@ import java.util.Set;
 
 public class PeselSet {
 
-    Set<Pesel> peselSet = new HashSet<>();
+    MySet<Pesel> peselSet = new MySet<>();
 
     public Set<String> getPeselNumbers(){
         Set<String> temp = new HashSet<>();
-        for(Pesel pesel : this.peselSet){
+        for(Pesel pesel : this.peselSet.getSet()){
             temp.add(pesel.getNumber());
         }
         return temp;
+    }
+
+    public int test(){
+        return peselSet.size();
     }
 
     public boolean addPesel(String pesel){
