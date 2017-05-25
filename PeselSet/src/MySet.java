@@ -1,21 +1,21 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class MySet <T> {
+public class MySet<T> {
 
     private static int counter;
     private Node first;
     private Node lastAdded;
 
-    public boolean add(T data){
+    public boolean add(T data) {
 
-        if(first == null){
+        if (first == null) {
             first = new Node(data);
             lastAdded = first;
             counter++;
             return true;
         }
-        if(!isDuplicate(data)){
+        if (!isDuplicate(data)) {
             lastAdded.next = new Node(data);
             lastAdded = lastAdded.next;
             counter++;
@@ -24,44 +24,43 @@ public class MySet <T> {
         return false;
     }
 
-    public int size(){
+    public int size() {
         return counter;
     }
 
-    public Set<T> getSet(){
+    public Set<T> getSet() {
         Node current = first;
         Set<T> set = new HashSet<>();
         set.add(current.getData());
-        while (current.getNext() != null){
+        while (current.getNext() != null) {
             current = current.getNext();
         }
         return set;
     }
 
-    private boolean isDuplicate(T data){
+    private boolean isDuplicate(T data) {
+
         Node current = first;
-
-        if(current.getData().equals(data)) return true;
-        if(current.getData().hashCode() == data.hashCode()) return true;
-
-        while (current.getNext() != null){
-            current = current.getNext();
-        }
+        do {
+            if (current.getData().equals(data)) return true;
+        } while ((current = current.getNext()) != null);
         return false;
     }
 
-    private class Node{
+    private class Node {
 
         T data;
         Node next;
 
-        private Node(T data){
+        private Node(T data) {
             this.data = data;
         }
-        private T getData(){
+
+        private T getData() {
             return this.data;
         }
-        private Node getNext(){
+
+        private Node getNext() {
             return this.next;
         }
     }

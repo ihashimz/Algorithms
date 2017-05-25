@@ -30,7 +30,9 @@ public class PeselSet {
         if(pesel.getNumber().length() != 11) return false;
 
         char[] peselArray = pesel.getNumber().toCharArray();
+
         int[] converted = new int[11];
+
         for (int i = 0; i < converted.length; i++) {
             converted[i] = Character.getNumericValue(peselArray[i]);
         }
