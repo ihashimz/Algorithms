@@ -4,8 +4,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-
-        MySet2 ms = new MySet2();
+        MyTreeSet ms = new MyTreeSet();
         ms.add("96030804730");
         ms.add("96030804710");
         ms.add("16031804730");
@@ -16,13 +15,14 @@ public class Test {
         ms.add("96830804710");
         ms.add("96331804730");
 
+        printPeselNumbers(ms.getEntries());
+        System.out.println(ms.getEntries().size());
 
-        ms.testShowAll();
 
-//        PeselSet ps= new PeselSet();
+//        PeselSet ps = new PeselSet();
 //
 //        try {
-//            System.out.println(ps.addPesel("96030804730"));
+//        System.out.println(ps.addPesel("96030804730"));
 //            System.out.println(ps.addPesel("96030804730"));//DUPLICATE
 //            System.out.println(ps.addPesel("96030304730"));//WRONG
 //        }catch (Exception e){
@@ -34,8 +34,8 @@ public class Test {
 //        printPeselNumbers(ps.getPeselNumbers());
     }
 
-    public static void printPeselNumbers(Set<String> peselNumbers){
-        for(String pesel: peselNumbers){
+    public static void printPeselNumbers(Set<String> peselNumbers) {
+        for (String pesel : peselNumbers) {
             System.out.println(pesel);
         }
     }
