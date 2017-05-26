@@ -6,21 +6,49 @@ public class MySet2 {
 
         char[] idChar = id.toCharArray();
         int[] idInts = new int[11];
-        for (int i = 0; i < idInts.length; i++){
+        for (int i = 0; i < idInts.length; i++) {
             idInts[i] = Character.getNumericValue(idChar[i]);
         }
 
         int q = 0;
-        for(int i = 0; i < 11; i++){
+        Node[] temp = heads;
 
-            Node current = heads[idInts[q]];
-            if(current == null){
-                current = new Node();
+        for (int i = 0; i < 10; i++) {
+
+            if (temp[idInts[q]] == null) {
+                temp[idInts[q]] = new Node();
             }
-            current = current.nexts[idInts[i]];
+            if (q == 9) {
+                temp = temp[idInts[q++]].nexts;
+                temp[idInts[q]] = new Node();
+                temp[idInts[q]].setPesel(id);
+                return true;
+            }
+            temp = temp[idInts[q++]].nexts;
 
         }
-        return true;
+        return false;
+    }
+
+
+    public void testShowAll() {
+        testShowAll(heads);
+    }
+
+    private void testShowAll(Node[] nodes) {
+
+        for (Node node : nodes) {
+            if (node != null) {
+                if (node.getPesel() != null) {
+                    System.out.println(node.getPesel());
+                }
+                if (node.nexts != null && node.nexts.length != 0) {
+                    testShowAll(node.nexts);
+                }
+            }
+        }
+
+
     }
 
     private class Node {
@@ -30,17 +58,10 @@ public class MySet2 {
         public void setPesel(String pesel) {
             this.pesel = pesel;
         }
-    }
 
-    private class Id {
-        String number;
-
-        public Id(String number) {
-            this.number = number;
-        }
-
-        public String getNumber() {
-            return number;
+        public String getPesel() {
+            return pesel;
         }
     }
+
 }

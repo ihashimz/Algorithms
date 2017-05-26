@@ -4,19 +4,34 @@ public class Test {
 
     public static void main(String[] args) {
 
-        PeselSet ps= new PeselSet();
 
-        try {
-            System.out.println(ps.addPesel("96030804730"));
-            System.out.println(ps.addPesel("96030804730"));//DUPLICATE
-            System.out.println(ps.addPesel("96030304730"));//WRONG
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        MySet2 ms = new MySet2();
+        ms.add("96030804730");
+        ms.add("96030804710");
+        ms.add("16031804730");
+        ms.add("95030804730");
+        ms.add("96530804710");
+        ms.add("96061804730");
+        ms.add("96070804730");
+        ms.add("96830804710");
+        ms.add("96331804730");
 
-        System.out.println(ps.size());
 
-        printPeselNumbers(ps.getPeselNumbers());
+        ms.testShowAll();
+
+//        PeselSet ps= new PeselSet();
+//
+//        try {
+//            System.out.println(ps.addPesel("96030804730"));
+//            System.out.println(ps.addPesel("96030804730"));//DUPLICATE
+//            System.out.println(ps.addPesel("96030304730"));//WRONG
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println(ps.size());
+//
+//        printPeselNumbers(ps.getPeselNumbers());
     }
 
     public static void printPeselNumbers(Set<String> peselNumbers){
