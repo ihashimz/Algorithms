@@ -2,7 +2,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MyTreeSet {
-
+    //HashSet used only to store
     private Set<String> peselSet = new HashSet<>();
 
     private Node[] heads = new Node[10];
@@ -77,26 +77,6 @@ public class MyTreeSet {
         }
         return idInts;
     }
-
-//////////////////////////
-//    public void testShowAll() {
-//        testShowAll(heads);
-//    }
-//
-//    private void testShowAll(Node[] nodes) {
-//
-//        for (Node node : nodes) {
-//            if (node != null) {
-//                if (node.getPesel() != null) {
-//                    System.out.println(node.getPesel());
-//                }
-//                if (node.nexts != null && node.nexts.length != 0) {
-//                    testShowAll(node.nexts);
-//                }
-//            }
-//        }
-//    }
-/////////////////////////
 
 
     private class Node {
