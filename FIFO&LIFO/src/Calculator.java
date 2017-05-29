@@ -1,86 +1,44 @@
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Calculator {
 
     public static void main(String[] args) {
-        runCalc();
+        CalculatorIO clcIO = new CalculatorIO("/home/mateusz/Downloads/test.csv");
+        clcIO.read();
+
+        runCalc(clcIO.getInstructionsList());
+
+
     }
 
     //Guarantee precision if using only integers!
-    public static void runCalc() {
-        System.out.println("Available actions: + , - , * , /");
-        System.out.println("<Enter q to quit>");
-        boolean onlyIntegers = true;
-        Scanner sc = new Scanner(System.in);
-        //variables
-        Integer firstNumberI = null;
-        Integer secondNumberI = null;
-        Double firstNumberD = null;
-        Double secondNumberD = null;
+    public static void runCalc(List<String> instructionsList) {
+        int i = 0;
+        while (i < instructionsList.size() - 3) {
 
-        while (true) {
-            try {
-                if (sc.hasNext("q")) {
+            Double firstNumber = Double.parseDouble(instructionsList.get(i));
+            String action = instructionsList.get(i + 1);
+            Double secondNumber = Double.parseDouble(instructionsList.get(i + 2));
+
+            switch (action) {
+                case "+":
+                    System.out.println(firstNumber + " + " + secondNumber + " = " + add(firstNumber, secondNumber));
                     break;
-                }
-                if (sc.hasNext() && sc.hasNextInt()) {
-                    firstNumberI = sc.nextInt();
-                } else {
-                    firstNumberD = sc.nextDouble();
-                    onlyIntegers = false;
-                }
-                String action = sc.next();
-                if (sc.hasNext() && sc.hasNextInt()) {
-                    secondNumberI = sc.nextInt();
-                } else {
-                    secondNumberD = sc.nextDouble();
-                    onlyIntegers = false;
-                }
-                if (firstNumberD == null) {
-                    firstNumberD = ((double) firstNumberI);
-                }
-                if (secondNumberD == null) {
-                    secondNumberD = ((double) secondNumberI);
-                }
-                switch (action) {
-                    case "+":
-                        if (onlyIntegers) {
-                            System.out.println(add(firstNumberI, secondNumberI));
-                        } else {
-                            System.out.println(add(firstNumberD, secondNumberD));
-                        }
-                        break;
-                    case "-":
-                        if (onlyIntegers) {
-                            System.out.println(substract(firstNumberI, secondNumberI));
-                        } else {
-                            System.out.println(subtract(firstNumberD, secondNumberD));
-                        }
-                        break;
-                    case "*":
-                        if (onlyIntegers) {
-                            System.out.println(multiply(firstNumberI, secondNumberI));
-                        } else {
-                            System.out.println(multiply(firstNumberD, secondNumberD));
-                        }
-                        break;
-                    case "/":
-                        if (onlyIntegers) {
-                            System.out.println(divide(firstNumberI, secondNumberI));
-                        } else {
-                            System.out.println(divide(firstNumberD, secondNumberD));
-                        }
-                        break;
-                    default:
-                        System.out.println("Available actions: + , - , * , / ");
-                        break;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Input miss match?");
-                sc.next();
+                case "-":
+                    System.out.println(firstNumber + " - " + secondNumber + " = " + subtract(firstNumber, secondNumber));
+                    break;
+                case "*":
+                    System.out.println(firstNumber + " * " + secondNumber + " = " + multiply(firstNumber, secondNumber));
+                    break;
+                case "/":
+                    System.out.println(firstNumber + " / " + secondNumber + " = " + divide(firstNumber, secondNumber));
+                    break;
             }
+            i += 3;
         }
+
     }
 
     //DOUBLE
@@ -105,7 +63,7 @@ public class Calculator {
         return x + y;
     }
 
-    public static int substract(int x, int y) {
+    public static int subtract(int x, int y) {
         return x - y;
     }
 
