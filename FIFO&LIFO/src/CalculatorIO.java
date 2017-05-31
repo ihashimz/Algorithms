@@ -1,23 +1,56 @@
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CalculatorIO {
 
-    // Reads csv from file
+    // Reads instructions from csv file
+    // Saves results to csv file
 
     private File inputFile;
-    List<String> instructionsList = new ArrayList<>();
+    private List<String> instructionsList = new ArrayList<>();
+    private File outputFile;
 
-    public CalculatorIO(String path) {
-        if (path != null) {
-            this.inputFile = new File(path);
-
+    public CalculatorIO(String inputPath, String outputPath) {
+        if (inputPath != null) {
+            this.inputFile = new File(inputPath);
         }
+        if (outputPath != null) {
+            this.outputFile = new File(outputPath);
+        }
+    }
+
+    public void write(List<String> list, boolean overwrite) {
+        try (BufferedWriter output = new BufferedWriter(new OutputStreamWriter
+                (new FileOutputStream(outputFile, !overwrite)))) {
+
+            for (int i = 0; i < list.size(); i++) {
+                output.write(list.get(i));
+                if ((i + 1) % 4 == 0) {
+                    output.write("\n");
+                } else {
+                    output.write(";");
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+//        try (BufferedWriter output = new BufferedWriter(new FileWriter(outputFile,!overwrite))){
+//            for (int i = 0; i < list.size(); i++) {
+//                output.write(list.get(i));
+//                if((i + 1) % 4 == 0){
+//                    output.write("\n");
+//                }else {
+//                    output.write(";");
+//                }
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
     }
 
     public void read() {
