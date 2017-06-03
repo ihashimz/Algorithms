@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArrayIO {
 
@@ -14,19 +16,23 @@ public class ArrayIO {
         }
     }
 
-    public void write(int[][] array, boolean overwrite) {
-        if (array.length != 0) {
+
+
+
+    public void write(List<Integer> input, boolean overwrite) {
+        if (input.size() != 0) {
             try (DataOutputStream dos = new DataOutputStream(
                     new BufferedOutputStream(new FileOutputStream(outputFile, !overwrite)))) {
 
-                dos.write(array.length); // basic length
-                dos.write(array[0].length); //second length
+                dos.write(input.size());
 
-                for (int[] arr : array) {
-                    for (int element : arr) {
-                        dos.write(element);
+                input.forEach(integer -> {
+                    try {
+                        dos.write(integer);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                }
+                });
 
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -34,16 +40,17 @@ public class ArrayIO {
         }
     }
 
-    public int[][] read() {
+    public List<Integer> read() {
         try (DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(inputFile)))) {
-            int x = dis.read();
-            int y = dis.read();
-            int[][] output = new int[x][y];
-            for (int i = 0; i < x; i++) {
-                for(int j = 0; j < y; j++){
-                    output[i][j] = dis.read();
-                }
+
+            List<Integer> output = new ArrayList<>();
+
+            int size = dis.read();
+
+            for(int i = 0; i < size; i++){
+                output.add(dis.read());
             }
+
             return output;
         } catch (IOException e) {
             System.out.println(e.getMessage());
