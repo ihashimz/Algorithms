@@ -62,12 +62,13 @@ public class Calculator {
     private static List<String> convertToONP2(String input) {
 
         String[] inputList = spaceSeparator(input).split(" ");
-
+        //Used to track operations
         Stack<String> actions = new Stack<>();
 
         List<String> output = new ArrayList<>();
 
         for (String string : inputList) {
+            //Regular expression -> contains int ?
             if (string.matches("\\d+")) {
                 output.add(string);
             } else {
