@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.*;
 
-public class Store implements Serializable{
+public class Store implements Serializable {
 
     private IOService IOs = new IOService("/home/mateusz/Desktop/Algorithms/Shop/store.dat");
 
